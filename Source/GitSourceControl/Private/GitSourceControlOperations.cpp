@@ -330,7 +330,8 @@ bool FGitCheckInWorker::Execute(FGitSourceControlCommand& InCommand)
 				// unlock files: execute the LFS command on relative filenames
 				// (unlock only locked files, that is, not Added files)
 				TArray<FString> LockedFiles;
-				GitSourceControlUtils::GetLockedFiles(FilesToCheckIn.Array(), LockedFiles);
+				// GitSourceControlUtils::GetLockedFiles(FilesToCheckIn.Array(), LockedFiles);
+				LockedFiles = FilesToCheckIn.Array();
 				if (LockedFiles.Num() > 0)
 				{
 					const TArray<FString>& FilesToUnlock = GitSourceControlUtils::RelativeFilenames(LockedFiles, InCommand.PathToGitRoot);
